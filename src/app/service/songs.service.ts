@@ -22,4 +22,9 @@ export class SongsService {
     return this.http.get<Peticion>(url);
   }
 
+  savePlayList(form:any): Observable<Peticion>{
+    const url = this.URL+'lists';
+    return this.http.post<Peticion>(url,form);
+  }
+
 }

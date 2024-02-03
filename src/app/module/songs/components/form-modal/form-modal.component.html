@@ -1,0 +1,46 @@
+<div class="modal fade" id="form-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <label>Nombre de Lista</label>
+              <input type="text" class="form-control form-control-sm " formControlName="nombre">
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label>Descripcion</label>
+              <input type="text" class="form-control form-control-sm " formControlName="descripcion">
+            </div>
+          </div>
+          <div class="col-16">
+            <ng-container formArrayName="canciones" *ngFor="let control of canciones.controls; let i = index">
+              <ng-container [formGroupName]="i">
+                <label>Titulo</label>
+                <input type="text" class="form-control form-control-sm" formControlName="titulo">
+                <label>Artista</label>
+                <input type="text" class="form-control form-control-sm" formControlName="artista">
+                <label>Album</label>
+                <input type="text" class="form-control form-control-sm" formControlName="album">
+                <label>año</label>
+                <input type="text" class="form-control form-control-sm" formControlName="anno">
+                <label>Genero</label>
+                <input type="text" class="form-control form-control-sm" formControlName="genero">
+              </ng-container>
+
+            </ng-container>
+            <button class="btn btn-primary btn-sm" (click)="addSong()">Agregar cancion</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="saveSong()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
