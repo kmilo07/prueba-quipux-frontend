@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
+import { interceptorProvider } from './interceptors/interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { MainComponent } from './components/main/main.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
