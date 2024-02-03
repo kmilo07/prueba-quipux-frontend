@@ -17,4 +17,9 @@ export class SongsService {
     return this.http.get<Peticion[]>(url);
   }
 
+  getPlayListByName(name: string): Observable<Peticion>{
+    const url = this.URL+`lists/${name}`;
+    return this.http.get<Peticion>(url);
+  }
+
 }

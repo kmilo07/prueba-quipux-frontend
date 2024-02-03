@@ -5,23 +5,26 @@ import { SongsService } from 'src/app/service/songs.service';
 @Component({
   selector: 'app-songs',
   templateUrl: './songs.component.html',
-  styleUrls: ['./songs.component.scss']
+  styleUrls: ['./songs.component.scss'],
 })
-export class SongsComponent implements OnInit{
+export class SongsComponent implements OnInit {
   listPeticion: Peticion[] = [];
   ngOnInit(): void {
     this.getAllPlayList();
   }
 
-  constructor(private songsService:SongsService){}
+  constructor(private songsService: SongsService) {}
 
-  getAllPlayList(): void{
-    this.songsService.getAllPlayList().subscribe(
-      list=> {
-        this.listPeticion = list
-        console.log(list);
-        
-      })
+  getAllPlayList(): void {
+    this.songsService
+      .getAllPlayList()
+      .subscribe((list) => (this.listPeticion = list));
   }
 
+  getPlayList(name: string): void {
+    this.songsService.getPlayListByName(name).subscribe((value) => {
+      this.listPeticion = [];
+      this.listPeticion.push(value);
+    });
+  }
 }
