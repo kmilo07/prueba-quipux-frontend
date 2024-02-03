@@ -2,13 +2,19 @@
   <div class="col-sm-12 col-lg-6">
     <h1>Lista de canciones</h1>
   </div>
-  <div class="col-sm-12 col-lg-5 mt-3">
+  <div class="col-sm-12 col-lg-2 mt-3">
     <div class="input-group input-group-sm">
       <span class="input-group-text">
         <i class="fas fa-search"></i>
       </span>
-      <input class="form-control" type="text" (keyup.enter)="getPlayList(list.value)" #list>
+      <input class="form-control" type="text" #list>
     </div>
+  </div>
+  <div class="col-sm-12 col-lg-1 mt-3">
+    <button type="button" class="btn btn-primary btn-sm" (click)="getPlayList(list.value)">Buscar</button>
+  </div>
+  <div class="col-sm-12 col-lg-1 mt-3">
+    <button type="button" class="btn btn-danger btn-sm" (click)="deletePlayList(list.value)">Eliminar</button>
   </div>
   <div class="col-sm-12 col-lg-1 mt-3">
     <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#form-modal">Agregar</button>

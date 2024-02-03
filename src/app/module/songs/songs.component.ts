@@ -27,4 +27,13 @@ export class SongsComponent implements OnInit {
       this.listPeticion.push(value);
     });
   }
+
+  deletePlayList(name: string): void{
+    console.log(name);
+    this.songsService.deletePlayList(name).subscribe({
+      complete() {
+        window.location.reload();
+      },
+    })
+  }
 }

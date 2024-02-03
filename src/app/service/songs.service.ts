@@ -27,4 +27,9 @@ export class SongsService {
     return this.http.post<Peticion>(url,form);
   }
 
+  deletePlayList(name:string): Observable<void>{
+    const url = this.URL+`lists/${name}`;
+    return this.http.delete<void>(url);
+  }
+
 }
