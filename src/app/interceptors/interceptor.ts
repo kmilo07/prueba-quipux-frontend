@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, catchError, finalize, throwError } from "rxjs";
+import { Observable, catchError, throwError } from "rxjs";
 
 @Injectable()
 export class Interceptor implements HttpInterceptor{
@@ -15,16 +15,15 @@ export class Interceptor implements HttpInterceptor{
               console.log(error);
               let errorMessage = 'Error desconocido';
       
-              if (error.error instanceof ErrorEvent) {
-                // Error del lado del cliente
-                errorMessage = `Error: ${error.error?.message}`;
-                alert({text: errorMessage});
+              if (error.error) {
+                errorMessage = `Error: ${error.error?.mensaje}`;
+                alert(errorMessage);
               } else {
                 // Error del lado del servidor
                 if (error.status == 403 && error.url?.includes('/login')) {
-                  alert({title: 'No se pudo iniciar sesión 😢', text: 'Nombre de usuario o contraseña incorrectos'});
+                  alert('No se pudo iniciar sesión 😢');
                 } else {
-                  alert({text: error.error?.humanMessage});
+                  alert(error.error?.mensaje);
                 }
               }
       
