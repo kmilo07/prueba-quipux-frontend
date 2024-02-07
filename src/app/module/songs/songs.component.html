@@ -2,50 +2,46 @@
   <div class="col-sm-12 col-lg-6">
     <h1>Lista de canciones</h1>
   </div>
-  <div class="col-sm-12 col-lg-2 mt-3">
+  <div class="col-sm-9 col-md-9 col-lg-auto my-3 ms-auto">
     <div class="input-group input-group-sm">
-      <span class="input-group-text">
-        <i class="fas fa-search"></i>
-      </span>
       <input class="form-control" type="text" #list>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary btn-sm" (click)="getPlayList(list.value)">Buscar</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="deletePlayList(list.value)">Eliminar</button>
+      </div>
     </div>
   </div>
-  <div class="col-sm-12 col-lg-1 mt-3">
-    <button type="button" class="btn btn-primary btn-sm" (click)="getPlayList(list.value)">Buscar</button>
-  </div>
-  <div class="col-sm-12 col-lg-1 mt-3">
-    <button type="button" class="btn btn-danger btn-sm" (click)="deletePlayList(list.value)">Eliminar</button>
-  </div>
-  <div class="col-sm-12 col-lg-1 mt-3">
-    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#form-modal">Agregar</button>
+  <div class="col-sm-3 col-md-3 col-lg-1 my-3">
+    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+    data-bs-target="#form-modal">Agregar</button>
   </div>
 </div>
 
 <div class="card" *ngFor="let peticion of listPeticion">
-    <h3>{{peticion.nombre}}</h3>
-    <h4>{{peticion.descripcion}}</h4>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead class="table-dark">
-          <tr>
-            <th>Titulo</th>
-            <th>Artista</th>
-            <th>Album</th>
-            <th>año</th>
-            <th>Genero</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cancion of peticion.canciones">
-            <td>{{ cancion.titulo }}</td>
-            <td>{{ cancion.artista }}</td>
-            <td>{{ cancion.album }}</td>
-            <td>{{ cancion.anno }}</td>
-            <td>{{ cancion.genero }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <h3>{{peticion.nombre}}</h3>
+  <h4>{{peticion.descripcion}}</h4>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Titulo</th>
+          <th>Artista</th>
+          <th>Album</th>
+          <th>año</th>
+          <th>Genero</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cancion of peticion.canciones">
+          <td>{{ cancion.titulo }}</td>
+          <td>{{ cancion.artista }}</td>
+          <td>{{ cancion.album }}</td>
+          <td>{{ cancion.anno }}</td>
+          <td>{{ cancion.genero }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <app-form-modal></app-form-modal>
