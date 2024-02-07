@@ -27,9 +27,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe(token=>{
-        console.log(token);
-      });
+      this.authService.login(this.loginForm.value).subscribe(
+       {
+        complete:()=>{
+          this.router.navigate(['']);
+        }
+       }
+      );
     }
   }
 }

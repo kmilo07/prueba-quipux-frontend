@@ -1,20 +1,22 @@
 import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, throwError } from "rxjs";
+import { AuthService } from "../service/auth.service";
 
 @Injectable()
 export class Interceptor implements HttpInterceptor{
 
-    constructor(){}
+    constructor(private authService: AuthService){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6InF1aXB1eCIsImlhdCI6MTcwNjk0OTE0NSwiZXhwIjoxNzA4MjQ1MTQ1fQ.v0Vnst4fbLt9aILX9RA6gG_VbcoISdRNPFY__FEY_Q0';
-        let intReq = req.clone({headers: req.headers.set('Authorization','Bearer '+token)});
+        const token = this.authService.getToken();
+        let intReq = req;
+        if(token){
+          intReq = req.clone({headers: req.headers.set('Authorization','Bearer '+token)});
+        }
         return next.handle(intReq).pipe(
             catchError((error: HttpErrorResponse) => {
-              console.log(error);
               let errorMessage = 'Error desconocido';
-      
               if (error.error) {
                 errorMessage = `Error: ${error.error?.mensaje}`;
                 alert(errorMessage);
@@ -26,7 +28,6 @@ export class Interceptor implements HttpInterceptor{
                   alert(error.error?.mensaje);
                 }
               }
-      
               return throwError(errorMessage);
             })
           );
