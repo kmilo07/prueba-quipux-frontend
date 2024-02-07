@@ -16,6 +16,8 @@ export class Interceptor implements HttpInterceptor{
         }
         return next.handle(intReq).pipe(
             catchError((error: HttpErrorResponse) => {
+              console.log('error',error);
+              
               let errorMessage = 'Error desconocido';
               if (error.error) {
                 errorMessage = `Error: ${error.error?.mensaje}`;
@@ -24,7 +26,11 @@ export class Interceptor implements HttpInterceptor{
                 // Error del lado del servidor
                 if (error.status == 403 && error.url?.includes('/login')) {
                   alert('No se pudo iniciar sesión 😢');
-                } else {
+                }
+                else if(error.status == 403){
+                  alert('No tiene permiso para realizar esta acción')
+                } 
+                else {
                   alert(error.error?.mensaje);
                 }
               }

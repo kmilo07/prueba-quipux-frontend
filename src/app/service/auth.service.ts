@@ -10,6 +10,7 @@ import { Observable, map, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  
   URL = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {}
@@ -32,6 +33,11 @@ export class AuthService {
 
   setToken(token: string): void {
     localStorage.setItem('token', token);
+  }
+
+  signOff() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   isAuthenticated() {
