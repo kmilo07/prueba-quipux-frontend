@@ -20,7 +20,7 @@ export class Interceptor implements HttpInterceptor{
               
               let errorMessage = 'Error desconocido';
               if (error.error) {
-                errorMessage = `Error: ${error.error?.mensaje}`;
+                errorMessage = `${error.error?.mensaje}`;
                 alert(errorMessage);
               } else {
                 // Error del lado del servidor
