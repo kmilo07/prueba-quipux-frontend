@@ -19,14 +19,18 @@ export class FormModalComponent implements OnInit{
   }
 
   saveSong():void{
-    console.log(this.form);
-    this.songsService.savePlayList(this.form.value).subscribe(
-      {
-        complete() {
-          window.location.reload();
-        },
-      }
-    )
+    if(this.form.valid){
+      this.songsService.savePlayList(this.form.value).subscribe(
+        {
+          complete() {
+            window.location.reload();
+          },
+        }
+      )
+    }
+    else{
+      alert("Faltan campos por llenar")
+    }
   }
 
   private buildForm(): void{
@@ -43,11 +47,11 @@ export class FormModalComponent implements OnInit{
 
   private buildSong(): FormGroup{
     return this.builderForm.group({
-      titulo: '',
-      artista: '',
-      album: '',
-      anno: '',
-      genero: '',
+      titulo: ['',Validators.required],
+      artista: ['',Validators.required],
+      album: ['',Validators.required],
+      anno: ['',Validators.required],
+      genero: ['',Validators.required],
     })
   }
 

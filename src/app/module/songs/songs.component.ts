@@ -18,14 +18,21 @@ export class SongsComponent implements OnInit {
   getAllPlayList(): void {
     this.songsService
       .getAllPlayList()
-      .subscribe((list) => (this.listPeticion = list));
+      .subscribe((list) => {
+        this.listPeticion = [];
+        this.listPeticion = list;
+      });
   }
 
   getPlayList(name: string): void {
-    this.songsService.getPlayListByName(name).subscribe((value) => {
-      this.listPeticion = [];
-      this.listPeticion.push(value);
-    });
+    if(name!=''){
+      this.songsService.getPlayListByName(name).subscribe((value) => {
+        this.listPeticion = [];
+        this.listPeticion.push(value);
+      });
+    }else{
+      this.getAllPlayList();
+    }
   }
 
   deletePlayList(name: string): void{
