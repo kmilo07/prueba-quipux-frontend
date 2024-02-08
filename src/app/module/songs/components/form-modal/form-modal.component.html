@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-plus-circle"></i>Agregar lista de reproducción</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -20,20 +20,35 @@
           <div class="col-16">
             <ng-container formArrayName="canciones" *ngFor="let control of canciones.controls; let i = index">
               <ng-container [formGroupName]="i">
-                <label>Titulo</label>
-                <input type="text" class="form-control form-control-sm" formControlName="titulo">
-                <label>Artista</label>
-                <input type="text" class="form-control form-control-sm" formControlName="artista">
-                <label>Album</label>
-                <input type="text" class="form-control form-control-sm" formControlName="album">
-                <label>año</label>
-                <input type="text" class="form-control form-control-sm" formControlName="anno">
-                <label>Genero</label>
-                <input type="text" class="form-control form-control-sm" formControlName="genero">
+                <hr class="border-2 opacity-50" *ngIf="i>0">
+                <h4>Cancion {{i+1}}</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Titulo</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="titulo">
+                  </div>
+                  <div class="col-md-6">
+                    <label>Artista</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="artista">
+                  </div>
+                  <div>
+                    <label>Album</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="album">
+                  </div>
+                  <div class="col-md-6">
+                    <label>año</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="anno">
+                  </div>
+                  <div class="col-md-6">
+                    <label>Genero</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="genero">
+                  </div>
+                </div>
               </ng-container>
-
             </ng-container>
-            <button class="btn btn-primary btn-sm" (click)="addSong()">Agregar cancion</button>
+            <div class="d-flex mt-3 mx-auto justify-content-center">
+              <button class="btn btn-primary btn-sm" (click)="addSong()">Agregar canción</button>
+            </div>
           </div>
         </form>
       </div>
